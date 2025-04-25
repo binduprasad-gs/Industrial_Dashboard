@@ -1,0 +1,80 @@
+.chart-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 16px;
+  }
+  
+  .chart-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .chart-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .chart-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .chart-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .metric-button {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    background-color: var(--secondary-light);
+    color: var(--text-color);
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .metric-button:hover {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  
+  .metric-button.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+  
+  /* Loading state */
+  .chart-loading {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 16px;
+  }
+  
+  .loading-header {
+    height: 24px;
+    width: 200px;
+    background-color: var(--secondary-light);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .loading-chart {
+    height: 300px;
+    background-color: var(--secondary-light);
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  

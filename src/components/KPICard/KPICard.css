@@ -1,0 +1,96 @@
+.kpi-card {
+    border-radius: 8px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 16px;
+    border-left: 4px solid;
+    height: 100%;
+  }
+  
+  .kpi-card.primary {
+    border-color: var(--primary-color);
+  }
+  
+  .kpi-card.success {
+    border-color: var(--success-color);
+  }
+  
+  .kpi-card.danger {
+    border-color: var(--danger-color);
+  }
+  
+  .kpi-card.warning {
+    border-color: var(--warning-color);
+  }
+  
+  .kpi-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .kpi-card-info {
+    flex: 1;
+  }
+  
+  .kpi-card-title {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  
+  .kpi-card-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .kpi-card-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .kpi-card-change.increase {
+    color: var(--success-color);
+  }
+  
+  .kpi-card-change.decrease {
+    color: var(--danger-color);
+  }
+  
+  .kpi-card-period {
+    color: var(--text-secondary);
+  }
+  
+  .kpi-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  
+  .kpi-card-icon.primary {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+  }
+  
+  .kpi-card-icon.success {
+    background-color: var(--success-light);
+    color: var(--success-color);
+  }
+  
+  .kpi-card-icon.danger {
+    background-color: var(--danger-light);
+    color: var(--danger-color);
+  }
+  
+  .kpi-card-icon.warning {
+    background-color: var(--warning-light);
+    color: var(--warning-color);
+  }
+  

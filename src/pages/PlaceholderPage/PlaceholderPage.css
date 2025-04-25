@@ -1,0 +1,23 @@
+.placeholder-container {
+    padding: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .placeholder-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 24px;
+  }
+  
+  .placeholder-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  
+  .placeholder-text {
+    color: var(--text-secondary);
+  }
+  
