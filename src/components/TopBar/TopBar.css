@@ -1,219 +1,390 @@
+/* src/components/TopBar/TopBar.css */
+/*  IMPROVEMENT: Enhanced styles for better dropdown behavior and mobile support */
+
 .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: var(--card-background);
-    box-shadow: 0 2px 4px var(--shadow-color);
-  }
-  
-  .topbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-  }
-  
-  .topbar-left {
-    display: flex;
-    align-items: center;
-  }
-  
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--card-background);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-menu-button {
+  display: none;
+  margin-right: 12px;
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.topbar-menu-button:hover {
+  background-color: var(--secondary-light);
+}
+
+@media (max-width: 1023px) {
   .topbar-menu-button {
-    display: none;
-    margin-right: 12px;
-    color: var(--text-color);
+    display: flex;
   }
-  
-  @media (max-width: 1023px) {
-    .topbar-menu-button {
-      display: block;
-    }
-  }
-  
+}
+
+.topbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* IMPROVEMENT: Better responsive title */
+@media (max-width: 768px) {
   .topbar-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  
-  .topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .topbar-icon-button {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    transition: background-color 0.2s;
-  }
-  
-  .topbar-icon-button:hover {
-    background-color: var(--secondary-light);
-  }
-  
-  .topbar-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: var(--danger-color);
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .topbar-profile-button {
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    border-radius: 20px;
-    transition: background-color 0.2s;
-  }
-  
-  .topbar-profile-button:hover {
-    background-color: var(--secondary-light);
-  }
-  
-  .topbar-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    margin-right: 4px;
-  }
-  
-  /* Dropdown menus */
-  .topbar-dropdown {
-    position: relative;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    margin-top: 8px;
-    width: 320px;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--shadow-color);
-    overflow: hidden;
-    z-index: 1000;
-  }
-  
-  .dropdown-header {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .dropdown-header h3 {
     font-size: 1rem;
-    font-weight: 600;
   }
-  
-  .notifications-list {
-    max-height: 320px;
-    overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+  .topbar-title {
+    display: none;
   }
-  
-  .notification-item {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: background-color 0.2s;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/*  IMPROVEMENT: Better button styles */
+.topbar-icon-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.topbar-icon-button:hover {
+  background-color: var(--secondary-light);
+  transform: scale(1.05);
+}
+
+.topbar-icon-button:active {
+  transform: scale(0.95);
+}
+
+/* IMPROVEMENT: Better badge design */
+.topbar-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--danger-color);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.topbar-profile-button {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 20px;
+  transition: background-color 0.2s;
+}
+
+.topbar-profile-button:hover {
+  background-color: var(--secondary-light);
+}
+
+.topbar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/*  FIXED: Improved dropdown positioning and behavior */
+.topbar-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 320px;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: dropdown-appear 0.2s ease-out forwards;
+}
+
+/* IMPROVEMENT: Smooth dropdown animation */
+@keyframes dropdown-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .notification-item:hover {
-    background-color: var(--secondary-light);
+}
+
+/* IMPROVEMENT: Mobile responsive dropdown */
+@media (max-width: 480px) {
+  .dropdown-menu {
+    right: -16px;
+    left: -16px;
+    min-width: auto;
+    max-width: calc(100vw - 32px);
   }
-  
-  .notification-item.unread {
-    background-color: var(--primary-light);
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--secondary-light);
+}
+
+.dropdown-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/*  NEW: Mark all as read button */
+.mark-all-read-btn {
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.mark-all-read-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.notifications-list {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/*  IMPROVEMENT: Better notification item design */
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: var(--secondary-light);
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.unread {
+  background-color: var(--primary-light);
+  position: relative;
+}
+
+.notification-item.unread::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--primary-color);
+}
+
+.notification-content {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.notification-message {
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* NEW: Delete notification button */
+.notification-delete {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.notification-delete:hover {
+  background-color: var(--danger-light);
+  color: var(--danger-color);
+}
+
+.notification-delete .material-icons {
+  font-size: 16px;
+}
+
+.notification-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.dropdown-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  background-color: var(--secondary-light);
+}
+
+.dropdown-link {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-link:hover {
+  background-color: var(--primary-light);
+  text-decoration: none;
+}
+
+/* Profile menu specific styles */
+.profile-menu {
+  min-width: 240px;
+}
+
+.profile-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.profile-email {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.dropdown-items {
+  padding: 8px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  transition: background-color 0.2s;
+  border: none;
+  background: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: var(--secondary-light);
+}
+
+.dropdown-item .material-icons {
+  margin-right: 12px;
+  font-size: 1.25rem;
+}
+
+.dropdown-item.logout {
+  color: var(--danger-color);
+}
+
+.dropdown-item.logout:hover {
+  background-color: var(--danger-light);
+}
+
+/* ✅ IMPROVEMENT: Focus styles for accessibility */
+.topbar-icon-button:focus,
+.topbar-profile-button:focus,
+.dropdown-item:focus,
+.notification-item:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ✅ IMPROVEMENT: Loading state for dropdowns */
+.dropdown-loading {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.dropdown-loading::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--text-secondary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .notification-message {
-    font-size: 0.875rem;
-    margin-bottom: 4px;
-  }
-  
-  .notification-time {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-  }
-  
-  .notification-empty {
-    padding: 16px;
-    text-align: center;
-    color: var(--text-secondary);
-  }
-  
-  .dropdown-footer {
-    padding: 8px;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-  }
-  
-  .dropdown-link {
-    color: var(--primary-color);
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-  
-  .dropdown-link:hover {
-    text-decoration: underline;
-  }
-  
-  .profile-menu {
-    width: 240px;
-  }
-  
-  .profile-name {
-    font-weight: 500;
-  }
-  
-  .profile-email {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-  }
-  
-  .dropdown-items {
-    padding: 8px 0;
-  }
-  
-  .dropdown-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 12px 16px;
-    text-align: left;
-    transition: background-color 0.2s;
-  }
-  
-  .dropdown-item:hover {
-    background-color: var(--secondary-light);
-  }
-  
-  .dropdown-item .material-icons {
-    margin-right: 12px;
-    font-size: 1.25rem;
-  }
-  
-  .dropdown-item.logout {
-    color: var(--danger-color);
-  }
-  
+}

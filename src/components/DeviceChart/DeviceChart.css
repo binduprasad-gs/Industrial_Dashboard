@@ -1,80 +1,395 @@
+/* src/components/DeviceChart/DeviceChart.css */
+/* FIXED: Improved chart responsiveness and mobile support */
+/* IMPROVEMENT: Better loading states and animations */
+
 .chart-container {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    padding: 16px;
-  }
-  
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  padding: 16px;
+  overflow: hidden;
+}
+
+.chart-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1024px) {
   .chart-header {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
+/*IMPROVEMENT: Better title section */
+.chart-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .chart-title-section {
+    flex-direction: row;
+    align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
   }
-  
-  @media (min-width: 768px) {
-    .chart-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-  
+}
+
+.chart-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
   .chart-title {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1rem;
   }
-  
-  .chart-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
+}
+
+/*NEW: Live status indicator */
+.chart-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--success-color);
+  animation: pulse-status 2s infinite;
+}
+
+@keyframes pulse-status {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-text {
+  font-size: 0.75rem;
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+/*FIXED: Improved responsive metric buttons */
+.chart-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metric-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  background-color: var(--secondary-light);
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  min-width: 80px;
+}
+
+@media (max-width: 640px) {
   .metric-button {
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: 0.75rem;
-    background-color: var(--secondary-light);
-    color: var(--text-color);
-    transition: background-color 0.2s, color 0.2s;
+    min-width: 70px;
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .metric-button {
+    flex-direction: row;
+    min-width: auto;
+    gap: 4px;
   }
   
-  .metric-button:hover {
-    background-color: var(--secondary-color);
-    color: white;
+  .metric-unit {
+    display: none;
   }
-  
-  .metric-button.active {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
+}
+
+.metric-button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.metric-button.active {
+  background-color: var(--metric-color, var(--primary-color));
+  color: white;
+  border-color: var(--metric-color, var(--primary-color));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.metric-name {
+  font-weight: 500;
+}
+
+.metric-unit {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* FIXED: Better responsive chart wrapper */
+.chart-wrapper {
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
   .chart-wrapper {
     height: 300px;
   }
-  
-  /* Loading state */
-  .chart-loading {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    padding: 16px;
+}
+
+@media (max-width: 480px) {
+  .chart-wrapper {
+    height: 250px;
   }
-  
-  .loading-header {
-    height: 24px;
-    width: 200px;
-    background-color: var(--secondary-light);
-    border-radius: 4px;
-    margin-bottom: 16px;
-    animation: pulse 1.5s infinite ease-in-out;
-  }
-  
+}
+
+/*IMPROVEMENT: Custom tooltip styles */
+.custom-tooltip {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-color);
+  font-size: 0.75rem;
+}
+
+.tooltip-value {
+  margin: 2px 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* IMPROVEMENT: Enhanced loading states */
+.chart-loading {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading-header {
+  height: 32px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-chart {
+  height: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 768px) {
   .loading-chart {
     height: 300px;
-    background-color: var(--secondary-light);
-    border-radius: 4px;
-    animation: pulse 1.5s infinite ease-in-out;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-chart {
+    height: 250px;
+  }
+}
+
+.loading-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--secondary-light) 0%,
+    var(--secondary-color) 50%,
+    var(--secondary-light) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.loading-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* NEW: Error state styles */
+.chart-error {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  padding: 32px 16px;
+  text-align: center;
+  border: 1px solid var(--danger-light);
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: var(--danger-color);
+  margin-bottom: 16px;
+}
+
+.error-icon .material-icons {
+  font-size: inherit;
+}
+
+.error-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+}
+
+.error-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--danger-color);
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.error-retry-btn:hover {
+  background-color: var(--danger-dark);
+}
+
+.error-retry-btn .material-icons {
+  font-size: 1rem;
+}
+
+/* NEW: Chart footer */
+.chart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .chart-footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+.chart-info .info-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.chart-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.chart-control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: var(--secondary-light);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.chart-control-btn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: rotate(180deg);
+}
+
+.chart-control-btn .material-icons {
+  font-size: 1.25rem;
+}
+
+/* IMPROVEMENT: Better focus states for accessibility */
+.metric-button:focus,
+.chart-control-btn:focus,
+.error-retry-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* IMPROVEMENT: Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .metric-button,
+  .chart-control-btn,
+  .loading-shimmer,
+  .status-indicator {
+    animation: none;
+    transition: none;
   }
   
+  .metric-button:hover,
+  .chart-control-btn:hover {
+    transform: none;
+  }
+}
+
+/*  IMPROVEMENT: High contrast mode support */
+@media (prefers-contrast: high) {
+  .chart-container {
+    border: 2px solid var(--text-color);
+  }
+  
+  .metric-button {
+    border: 1px solid var(--text-color);
+  }
+  
+  .custom-tooltip {
+    border: 2px solid var(--text-color);
+  }
+}
